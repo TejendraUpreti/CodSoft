@@ -10,12 +10,13 @@ class Task:
 
 # # Test the Task class
 # if __name__ == "__main__":
-#     task1 = Task("Buy groceries", "Milk, eggs, and bread")
+#     task = Task("Buy groceries", "Milk, eggs, and bread")
 #     task2 = Task("Walk the dog", completed=True)    
+#     print(task)
 #     print(task2)
 
 import pickle
-
+#coding_by_teju insta page name
 class ToDoList:
     def __init__(self):
         self.tasks = []
@@ -52,7 +53,7 @@ def main():
     while True:
         print("\nTo-Do List:")
         todo_list.list_tasks()
-        
+#Tejendra Upreti        
         print("\nOptions:")
         print("1. Add task")
         print("2. Mark task completed")
@@ -116,7 +117,7 @@ class ToDoApp:
             self.task_listbox.delete(selected_index)
         except IndexError:
             messagebox.showwarning("Warning", "Select a task to delete")
-
+#teju
 if __name__ == "__main__":
     root = tk.Tk()
     app = ToDoApp(root)
