@@ -1,0 +1,124 @@
+class Task:
+    def __init__(self, title, description='', completed=False):
+        self.title = title
+        self.description = description
+        self.completed = completed
+    
+    def __str__(self):
+        status = '✔' if self.completed else '✘'
+        return f"[{status}] {self.title}: {self.description}"
+
+# # Test the Task class
+# if __name__ == "__main__":
+#     task1 = Task("Buy groceries", "Milk, eggs, and bread")
+#     task2 = Task("Walk the dog", completed=True)    
+#     print(task2)
+
+import pickle
+
+class ToDoList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def list_tasks(self):
+        for i, task in enumerate(self.tasks):
+            print(f"{i+1}. {task}")
+
+    def mark_completed(self, index):
+        if 0 <= index < len(self.tasks):
+            self.tasks[index].completed = True
+
+    def delete_task(self, index):
+        if 0 <= index < len(self.tasks):
+            del self.tasks[index]
+
+    def save(self, filename):
+        with open(filename, 'wb') as file:
+            pickle.dump(self.tasks, file)
+
+    def load(self, filename):
+        try:
+            with open(filename, 'rb') as file:
+                self.tasks = pickle.load(file)
+        except FileNotFoundError:
+            self.tasks = []
+def main():
+    todo_list = ToDoList()
+    todo_list.load('tasks.pkl')
+
+    while True:
+        print("\nTo-Do List:")
+        todo_list.list_tasks()
+        
+        print("\nOptions:")
+        print("1. Add task")
+        print("2. Mark task completed")
+        print("3. Delete task")
+        print("4. Save and exit")
+        
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            title = input("Enter task title: ")
+            description = input("Enter task description: ")
+            task = Task(title, description)
+            todo_list.add_task(task)
+        elif choice == '2':
+            index = int(input("Enter task number to mark as completed: ")) - 1
+            todo_list.mark_completed(index)
+        elif choice == '3':
+            index = int(input("Enter task number to delete: ")) - 1
+            todo_list.delete_task(index)
+        elif choice == '4':
+            todo_list.save('tasks.pkl')
+            break
+        else:
+            print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+    main()
+    import tkinter as tk
+from tkinter import messagebox
+
+class ToDoApp:
+    def __init__(self, root):
+        self.root = root
+        root.title("To-Do List")
+        
+        self.tasks = []
+
+        self.task_listbox = tk.Listbox(root, width=50, height=15)
+        self.task_listbox.pack(padx=10, pady=10)
+
+        self.entry_task = tk.Entry(root, width=40)
+        self.entry_task.pack(padx=10, pady=5)
+
+        self.button_add = tk.Button(root, text="Add Task", command=self.add_task)
+        self.button_add.pack(side=tk.LEFT, padx=5, pady=5)
+
+        self.button_delete = tk.Button(root, text="Delete Task", command=self.delete_task)
+        self.button_delete.pack(side=tk.LEFT, padx=5, pady=5)
+
+    def add_task(self):
+        task = self.entry_task.get()
+        if task:
+            self.task_listbox.insert(tk.END, task)
+            self.entry_task.delete(0, tk.END)
+        else:
+            messagebox.showwarning("Warning", "Task cannot be empty")
+
+    def delete_task(self):
+        try:
+            selected_index = self.task_listbox.curselection()[0]
+            self.task_listbox.delete(selected_index)
+        except IndexError:
+            messagebox.showwarning("Warning", "Select a task to delete")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ToDoApp(root)
+    root.mainloop()
+
