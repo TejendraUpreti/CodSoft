@@ -1,4 +1,4 @@
-
+#Tejendra Upreti
 def add(x, y):
     return x + y
 
@@ -23,7 +23,7 @@ def main():
     except ValueError:
         print("Invalid input. Please enter numeric values.")
         return
-
+#coding_by_teju insta page
     print("\nSelect operation:")
     print("1. Add")
     print("2. Subtract")
@@ -45,7 +45,7 @@ def main():
     elif operation == '4':
         result = divide(num1, num2)
         print(f"The result of {num1} / {num2} is {result}")
-    else:
+    else: #teju
         print("Invalid operation choice. Please select a valid option (1/2/3/4).")
 
 if __name__ == "__main__":
