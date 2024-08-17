@@ -1,0 +1,17 @@
+{
+    "Tejendra Upreti": {
+        "phone": "896-5434-564",
+        "email": "tejendra.upreti@example.com",
+        "address": "HN.123 Agra, India"
+    },
+    "Coding by teju": {
+        "phone": "634-7654-345",
+        "email": "codingby.teju@example.com",
+        "address": "HN.456 Agra, India"
+    },
+"teju": {
+        "phone": "894-7054-789",
+        "email": "coding.teju@example.com",
+        "address": "33 Agra, India"
+    }
+}
