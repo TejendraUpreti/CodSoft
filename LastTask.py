@@ -1,25 +1,22 @@
 import json
 
-# File to store contact data
 CONTACT_FILE = 'file.json'
 
 def load_contacts():
-    """Load contacts from a JSON file."""
     try:
         with open(CONTACT_FILE, 'r') as file:
             return json.load(file)
+        #print(file)    
     except FileNotFoundError:
         return {}
     except json.JSONDecodeError:
         return {}
 
 def save_contacts(contacts):
-    """Save contacts to a JSON file."""
     with open(CONTACT_FILE, 'w') as file:
         json.dump(contacts, file, indent=4)
 
 def add_contact(contacts):
-    """Add a new contact."""
     name = input("Enter contact name: ").strip()
     phone = input("Enter contact phone number: ").strip()
     email = input("Enter contact email: ").strip()
@@ -36,7 +33,6 @@ def add_contact(contacts):
         print("Contact added successfully.")
 
 def view_contacts(contacts):
-    """View all contacts."""
     if contacts:
         print("\nContact List:")
         for name, details in contacts.items():
@@ -61,7 +57,6 @@ def search_contact(contacts):
         print("No contact found with the given search term.")
 
 def update_contact(contacts):
-    """Update an existing contact."""
     name = input("Enter the name of the contact to update: ").strip()
     
     if name in contacts:
@@ -79,7 +74,6 @@ def update_contact(contacts):
         print("Contact not found.")
 
 def delete_contact(contacts):
-    """Delete a contact."""
     name = input("Enter the name of the contact to delete: ").strip()
     
     if name in contacts:
